@@ -1,0 +1,116 @@
+@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+
+form {
+    background: rgb(8, 8, 8);
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 30px;
+    margin-top: 12%;
+    text-align: center;
+    max-width: 500px;
+}
+label {
+    float: left;
+    font-size: 28px;
+    color: white;
+}
+h1 {
+    font-size: 45px;
+    color: rgb(46, 43, 43);
+}
+input {
+    font-size: 30px;
+    min-height: 50px;
+}
+select {
+    font-size: 130%;
+    min-height: 50px;
+}
+button {
+    width: 40%;
+    min-height: 50px;
+    font-size: 145%;
+}
+.onTheLeft{
+    float: left;
+ }
+ .onTheRight{
+     float: right;
+ }
+ table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin-top: 10%;
+    padding: 0;
+    width: 600px;
+    table-layout: fixed;
+  }
+
+  table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+  }
+  table tr {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+  }
+  table th,
+  table td {
+    padding: .625em;
+    text-align: center;
+  }
+  table th {
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    background: black;
+    color: white;
+    min-height: 80px;
+    font-size: 20px;
+  }
+  @media screen and (max-width: 600px) {
+    table {
+      border: 0;
+    }
+    table caption {
+      font-size: 1.3em;
+    }
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    table td:before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }
+  thead{
+      color: black;
+  }

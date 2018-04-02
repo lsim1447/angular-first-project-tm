@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="onTheLeft">
+            <label for="choosedTender">Kérem válasszon egyet:</label>
+            <br/>
+            <select [(ngModel)]="selectedTender" id="choosedTender" name="choosedTender" (change)="selectedTenderChanged()">
+                <option *ngFor="let t of tenders" [ngValue]="t">{{t.description}}</option>
+            </select>
+            <br/>
+            <div class="divbar">
+                <label>Saját név: {{selectedTender.own_name}}</label>
+                <button type="submit" class="printButton" (click) ='printTender()'>Kiirás állományba</button>
+                <br/>
+                <label>Kliens neve: {{selectedTender.recipient_name}}</label>
+                <br/>
+                <label>Dátum: {{selectedTender.choosed_date}}</label>
+                <br/>
+                <label>Teljes összeg: {{totalPrice}} lei</label>
+                <button type="submit" class="deleteButton" (click) ='deleteTender()'>Törlés</button>
+            </div >
+            <br/>
+            
+            <table>
+                    <thead>
+                        <tr>
+                            <th>Munkálat neve</th>
+                            <th>M.egység</th>
+                            <th>Mennyiség</th>
+                            <th>Ár</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let d of details">
+                            <td (click)="showRowData(d)">{{d.task.name}}</td>
+                            <td (click)="showRowData(d)">{{d.task.unit}}</td>
+                            <td (click)="showRowData(d)">{{d.quantity}}</td>
+                            <td (click)="showRowData(d)">{{d.price}}</td>
+                            <td (click)="deleteDetail(d)" ><img width="45px" height="45px" src="https://image.flaticon.com/icons/png/128/61/61391.png" alt="Smiley face"></td>
+                        </tr>
+                    </tbody>
+            </table>
+            <button type="button" style="width: 600px" class="btn btn-success" (click)="saveTender()"> Mentés </button>
+    </div>     
+    <div class="onTheRight">
+        <form #addDetail="ngForm">
+            <h1><strong>Új munkálat</strong></h1>
+            <div class="form-group">
+                <label for="task" style="float:left">Feladat:</label>
+                <select class="form-control" [(ngModel)]="selectedTask" id="choosedTask" name="choosedTask"
+                    required   #choosedTask="ngModel">
+                        <option *ngFor="let t of tasks" [ngValue]="t">{{t.name}}</option>
+                </select>
+                <div [hidden]="choosedTask.valid || choosedTask.pristine" class="alert alert-danger">
+                        Kérem válasszon egyet!
+                </div>
+            </div>
+
+            <div class="form-group">
+                    <label for="task" style="float:left">Mértékegység:</label>
+                    <select class="form-control" required name="unit" required id="unit">
+                            <option>{{selectedTask.unit}}</option>
+                    </select>
+            </div>
+
+            <div class="form-group">
+                    <label for="quantity" style="float:left"> Menny:</label>
+                    <input type="text" class="form-control" id="quantity" 
+                        required
+                        [(ngModel)]="newDetail.quantity" name="quantity"
+                        #quantity="ngModel">
+                    <div [hidden]="quantity.valid || quantity.pristine" class="alert alert-danger">
+                      A mennyiség megadása kötelező!
+                    </div>
+            </div>
+
+            <div class="form-group">
+                    <label for="price" style="float:left"> Ár (LEI):</label>
+                    <input type="text" class="form-control" id="price" 
+                        required
+                        [(ngModel)]="newDetail.price" name="price"
+                        #price="ngModel">
+                    <div [hidden]="price.valid || price.pristine" class="alert alert-danger">
+                      Az ár megadása kötelező!
+                    </div>
+            </div>
+
+            <button type="submit" style="width: 120px" class="btn btn-success" [disabled]="!addDetail.form.valid" (click) ='addToList()'> Hozzáad </button>
+       
+          </form>
+    </div>   
+</div>

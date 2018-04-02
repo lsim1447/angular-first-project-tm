@@ -1,0 +1,52 @@
+{{diagnostic}}
+<div class="container">
+    <form #welcomeForm="ngForm" (ngSubmit)="onSubmit()">
+      <h1><strong>Új ajánlat/számla</strong></h1>
+      <div class="form-group">
+        <label for="own_name">Saját neve:</label>
+        <input type="text" class="form-control" id="own_name" 
+            required
+            [(ngModel)]="model.own_name" name="own_name"
+            #own_name="ngModel">
+            <div [hidden]="own_name.valid || own_name.pristine" class="alert alert-danger">
+                A saját név megadása kötelező!
+            </div>
+      </div>
+
+      <div class="form-group">
+        <label for="recipient_name">Kliens neve:</label>
+        <input type="text" class="form-control" id="recipient_name" 
+            required
+            [(ngModel)]="model.recipient_name" name="recipient_name"
+            #recipient_name="ngModel">
+        <div [hidden]="recipient_name.valid || recipient_name.pristine" class="alert alert-danger">
+          A kliens nevének a megadása kötelező!
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="choosed_date">Dátum:</label>
+        <input type="date" class="form-control" id="choosed_date" 
+            required
+            [(ngModel)]="model.choosed_date" name="choosed_date"
+            #choosed_date="ngModel">
+        <div [hidden]="choosed_date.valid || choosed_date.pristine" class="alert alert-danger">
+                A dátum megadása kötelező!
+        </div>
+      </div>
+
+      <div class="form-group">
+          <label for="recipient_name">Leirás:</label>
+          <input type="text" class="form-control" id="description" 
+              required
+              [(ngModel)]="model.description" name="description"
+              #description="ngModel">
+          <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
+              A leirás megadása kötelező!
+          </div>
+        </div>
+ 
+      <button type="submit" class="btn btn-success" [disabled]="!welcomeForm.form.valid" (click) ='saveButtonClicked()'>Létrehoz</button>
+ 
+    </form>
+</div>
